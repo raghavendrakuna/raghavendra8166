@@ -1,35 +1,44 @@
 package training;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.testng.Assert;
-import org.testng.annotations.Test;
+ import org.openqa.selenium.WebDriver;
+ import org.openqa.selenium.chrome.ChromeDriver;
+ import org.openqa.selenium.firefox.FirefoxDriver;
+ import org.testng.Assert;
+ import org.testng.annotations.Parameters;
+ import org.testng.annotations.Test;
 
 public class Newclass {
-	@Test
-	public void testLogin()
-	{
-		System.setProperty("WebDriver.chrome.driver","C:\\chromedriver.exe");
-		WebDriver driver=new ChromeDriver();
-		
-		driver.get("https://github.com/login");
-		driver.findElement(By.id("login_field")).sendKeys("sanketh247");
-		driver.findElement(By.id("password")).sendKeys("gopala247");
-		driver.findElement(By.name("commit")).click();
-		String title=driver.getTitle();
-		System.out.println(title);
-		
-		Assert.assertEquals(title,"Sign in to GitHub · GitHub");
-		
-<<<<<<< HEAD
-		System.out.println("Continue to testingjkij.........");
-		System.out.println("Continue to testingjkij.........");
-=======
-		System.out.println("Continue toesting.........");
-		System.out.println("Continue to testing.........");
-		System.out.println("Continue to testing.........");
-
->>>>>>> branch 'master' of https://github.com/sanketh247/gitpushrepository.git
-	}
-}
+  @Parameters("browser")
+  @Test
+  public void testLogin(String value)
+  {
+   WebDriver driver=null;
+   if(value.equals("chrome"))
+   {
+    System.setProperty("WebDriver.chrome.driver","C:\\chromedriver.exe");
+    driver=new ChromeDriver();
+   }
+  
+   else if (value.equals("Firefox"))
+   {
+    System.setProperty("WebDriver.gecko.driver","C:\\geckodriver.exe");
+    driver=new FirefoxDriver();
+   }
+   else
+   {
+    System.out.println("No Driver Found");
+   }
+   
+   driver.get("https://github.com/login");
+   driver.findElement(By.id("login_field")).sendKeys("raghavendrakuna");
+   driver.findElement(By.id("password")).sendKeys("R@lkm815");
+   driver.findElement(By.name("commit")).click();
+   String title=driver.getTitle();
+   System.out.println(title);
+   
+   Assert.assertEquals(title,"GitHub");
+   
+   System.out.println("Continue to testing.........");
+  }
+  }
